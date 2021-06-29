@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import News from './components/news'
 
@@ -144,16 +144,12 @@ const exampleNew = [
   },
 ]
 
-const ll = {
-  first: 'sds',
-  secont: 'asda'
-}
 
 
-function App() {
-  const [scheme, useScheme] = useState('blackScheme')
-  const [lang, useLang] = useState('укр')
-  const [category, useCategory] = useState({
+const App: React.FC = () => {
+  const [scheme, setScheme] = useState<string>('blackScheme');
+  const [lang, setLang] = useState<string>('укр');
+  const [category, setCategory] = useState<{[index: number]: boolean;}>({
     1: true,
     2: true,
     3: true,
@@ -161,7 +157,13 @@ function App() {
     5: true,
     6: true,
     7: true
-  })
+  });
+
+
+useEffect(()=>{
+
+},[]);
+
 
 
   return (
@@ -196,6 +198,11 @@ function App() {
 
         </div>
         </>}
+      <div onClick={(e)=>{
+        setScheme(scheme)
+        setLang(lang)
+        setCategory(category)
+      }}></div>
       <News lang={lang} content={exampleNew[0]} type={1}/>
     </div>
   );
