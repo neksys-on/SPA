@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT&display=swap');
+
+.App {
+  min-height: 190vh;
+}
+.header {
+  height: 184px;
+  width: 100%;
+  backdrop-filter: blur(15px);
+  position: fixed;
+  box-shadow: 0px 1px 25px 0px #0000000A;
+  box-shadow: 0px 1px 25px 0px #00000014;
+}
+.header__title {
+  width: 100%;
+  height: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 50px;
+  letter-spacing: 0.275em;
+  text-align: left;
+  position: fixed;
+  z-index: 10;
+}
+.header__burger {
+  width: 31.29px;
+  height: 23.65px;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 37px;
+  left: 43px;
+  cursor: pointer;
+  z-index: 11;
+}
+.header__burger_plast {
+  width:100%;
+  height: 3px;
+  border-radius: 5px;
+}
+.header__nav {
+  position: fixed;
+  top: 122px;
+  width: 80%;
+  height: 77px;
+  padding: 0 10%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.header__nav__item {
+  font-family: 'Old Standard TT', serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 37px;
+  letter-spacing: 0em;
+  text-align: left;
+  cursor: pointer;
+}
+
+.head_cushion {
+  height: 184px;
+  width: 100%;
+}
+.block__1 {
+  width: 100%;
+  height: 327px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.block__1__title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 55px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 69px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-top: 74px;
+  margin-bottom: 34px;
+}
+.block__1__button {
+  width: 320px;
+  height: 50px;
+  background: #096FFA;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 31px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: white;
+}
+
+.block__2 {
+  width: 100%;
+  height: 1360px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.block__2__title {
+  font-family: 'Old Standard TT';
+  font-size: 65px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 81px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-top: 100px;
+  margin-bottom: 52px;
+}
