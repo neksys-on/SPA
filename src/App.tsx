@@ -199,11 +199,20 @@ useEffect(()=>{
         </div>
         </>}
       <div onClick={(e)=>{
-        setScheme(scheme)
-        setLang(lang)
         setCategory(category)
       }}></div>
+      <div onClick={(e)=>{
+        let newLang
+        lang === 'укр' ? newLang = 'ukr' : newLang = 'укр'
+        setLang(newLang)
+      }} style={{width:'200px', cursor:'pointer'}}>Switch lang</div>
+      <div onClick={(e)=>{
+        let newDesign
+        scheme === 'whiteScheme' ? newDesign = 'blackScheme' : newDesign = 'whiteScheme'
+        setScheme(newDesign)
+      }} style={{width:'200px', cursor:'pointer', margin:'0 0 100px 0'}}>Switch design</div>
       <News lang={lang} content={exampleNew[0]} type={1}/>
+
     </div>
   );
 }
