@@ -241,7 +241,7 @@ useEffect(()=>{
         <div className="block__1" id="nav1">
           <div className="block__1__title">{firstBlockTitle[lang].title}</div>
           <div className="block__1__button">{firstBlockTitle[lang].button}</div>
-          <div className="block__1__containerForHr"><hr className="block__1__hr"/></div>
+          <hr className="block__1__hr"/>
         </div>
       </>}
 
