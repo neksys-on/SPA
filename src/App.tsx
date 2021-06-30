@@ -241,7 +241,7 @@ useEffect(()=>{
         <div className="block__1" id="nav1">
           <div className="block__1__title">{firstBlockTitle[lang].title}</div>
           <div className="block__1__button">{firstBlockTitle[lang].button}</div>
-          <hr className="block__1__hr"/>
+          <hr className="block__1__hr" style={scheme==='whiteScheme' ? styles.whiteScheme : styles.blackScheme}/>
         </div>
       </>}
 
