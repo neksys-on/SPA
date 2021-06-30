@@ -144,14 +144,6 @@ useEffect(()=>{
 
 },[]);
 
-function sleep(millis:number, y:number) {
-    let t = (new Date()).getTime();
-    let i = 0;
-    while (((new Date()).getTime() - t) < millis) {
-        i++;
-    }
-    window.scrollTo(0, y)
-}
 
   return (
     <div className="App" style={scheme==='whiteScheme' ? styles.whiteScheme : styles.blackScheme}>
