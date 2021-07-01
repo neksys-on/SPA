@@ -224,6 +224,14 @@ function navLine(id:string,category:{[index: number]: boolean;}):void {
   }
 }
 
+function showPopup_5() {
+    const popup:any = document.querySelector('.popup__fon5')
+    const container:any = document.querySelector('.popup_wrapper5')
+    popup.style.opacity = '1'
+    popup.style.visibility = 'visible'
+    container.style.opacity = '1'
+    container.style.transform = 'perspective(600px) translate(0px, 0%) rotateX(0deg)'
+}
 
 
 const App: React.FC = () => {
@@ -239,16 +247,9 @@ const App: React.FC = () => {
     6: true,
     7: true
   }); // Состояние категорий(тем) новорстных разделов, их вабранность пользователем, зависимости на выбор пользователя и сохранение состояния не делал
-  const [load, setLoad] = useState<boolean>(false); // заглушка для инициализации страницы
-
 
 useEffect(()=>{
-  if (!load) {
-    const line:any = document.querySelector(`#line1`);
-    line.style.opacity = '1'
-    setLoad(true)
-    setCategory(category) // удалить
-  }
+
 
 },[]);
 
@@ -282,7 +283,7 @@ useEffect(()=>{
                   behavior: 'smooth'
               })
             }
-          }}>{nav[lang][1]}</div><div id='line1' className="header__nav__item__line" style={scheme==='whiteScheme' ? styles.blackScheme : styles.whiteScheme}></div></div>}
+          }}>{nav[lang][1]}</div><div id='line1' className="header__nav__item__line" style={scheme==='whiteScheme' ? {backgroundColor: 'rgba(18, 18, 18, 1)', color: 'white', opacity: '1' } : {backgroundColor: 'white', color: 'rgba(18, 18, 18, 1)', opacity: '1'}}></div></div>}
           {category[2]===true && <div className="header__nav__item__container"><div className="header__nav__item" onClick={(e)=>{
             navLine('2',category)
             const element = document.querySelector(`#nav2`);
@@ -359,6 +360,7 @@ useEffect(()=>{
       </div>
       <div className="head_cushion"></div>
 
+      {/*Блоки зависимы от выбранных для просмотра категорий, саму зависимость именно выбора категорий не делал*/}
       {category[1]===true && <>
         <div className="block__1" id="nav1">
           <div className="block__1__title">{firstBlockTitle[lang].title}</div>
@@ -377,21 +379,21 @@ useEffect(()=>{
       {category[2]===true && <>
         <div className="block__2" id="nav2">
           <div className="block__2__title">{nav[lang][2]}</div>
-          <div className="block__2__greed1">
-            <News lang={lang} scheme={scheme} content={exampleNew[0]} type={1} />
+          <div className="block__2__greed1" onClick={showPopup_5}>
+            <News lang={lang} scheme={scheme} content={exampleNew[0]} type={1} /> {/* 1 тип новости это небольшое окно, тайтл, текст и источник*/}
             <News lang={lang} scheme={scheme} content={exampleNew[1]} type={1} />
             <News lang={lang} scheme={scheme} content={exampleNew[2]} type={1} />
             <News lang={lang} scheme={scheme} content={exampleNew[3]} type={1} />
           </div>
           <div className="block__2__greed2">
             <div style={{gridArea: 'first'}}>
-              <News lang={lang} scheme={scheme} content={exampleNew[0]} type={3} />
+              <News lang={lang} scheme={scheme} content={exampleNew[0]} type={3} /> {/* 3 тип новости это большое окно, картинка, тайтл, текст и источник*/}
             </div>
             <div style={{ gridArea: 'second'}}>
-              <News lang={lang} scheme={scheme} content={exampleNew[1]} type={4} />
+              <News lang={lang} scheme={scheme} content={exampleNew[1]} type={4} /> {/* 4 тип новости это широкое окно, тайтл и источник*/}
             </div>
             <div style={{gridArea: 'third'}}>
-              <News lang={lang} scheme={scheme} content={exampleNew[2]} type={5} />
+              <News lang={lang} scheme={scheme} content={exampleNew[2]} type={5} /> {/* 5 тип новости это маленькое окно, тайтл и источник*/}
             </div>
             <div style={{gridArea: 'fourth'}}>
               <News lang={lang} scheme={scheme} content={exampleNew[3]} type={5} />
@@ -403,7 +405,7 @@ useEffect(()=>{
       {category[4]===true && <>
         <div className="block__4" id="nav4">
           <div className="block__4__title">{nav[lang][4]}</div>
-          <div className="block__2__greed2">
+          <div className="block__2__greed2" onClick={showPopup_5}>
             <div style={{gridArea: 'first'}}>
               <News lang={lang} scheme={scheme} content={exampleNew[4]} type={3} />
             </div>
@@ -429,8 +431,8 @@ useEffect(()=>{
       {category[3]===true && <>
         <div className="block__3" id="nav3">
           <div className="block__3__title">{nav[lang][3]}</div>
-          <div className="block__3__greed1">
-            <News lang={lang} scheme={scheme} content={exampleNew[1]} type={2} />
+          <div className="block__3__greed1" onClick={showPopup_5}>
+            <News lang={lang} scheme={scheme} content={exampleNew[1]} type={2} /> {/*  2 тип новости это среднее окно, картинка тайтл, текст и источник*/}
             <News lang={lang} scheme={scheme} content={exampleNew[2]} type={2} />
             <News lang={lang} scheme={scheme} content={exampleNew[3]} type={2} />
             <News lang={lang} scheme={scheme} content={exampleNew[0]} type={2} />
@@ -441,9 +443,9 @@ useEffect(()=>{
       {category[5]===true && <>
         <div className="block__5" id="nav5">
           <div className="block__5__title">{nav[lang][5]}</div>
-          <div className="block__5__greed1">
+          <div className="block__5__greed1" onClick={showPopup_5}>
             <div style={{gridArea: 'first'}}>
-              <News lang={lang} scheme={scheme} content={exampleNew[1]} type={6} />
+              <News lang={lang} scheme={scheme} content={exampleNew[1]} type={6} /> {/*  6 тип новости это самое большое окно, картинка тайтл, текст и источник*/}
             </div>
             <div style={{gridArea: 'second'}}>
               <News lang={lang} scheme={scheme} content={exampleNew[3]} type={1} textFontSize={'25px'} titleFontSize={'30px'} contentPadding={'37px 88px 113px 88px'}/>
@@ -464,7 +466,7 @@ useEffect(()=>{
       {category[6]===true && <>
         <div className="block__6" id="nav6">
           <div className="block__6__title">{nav[lang][6]}</div>
-          <div className="block__6__greed1" style={{margin: '0 0 58px 0'}}>
+          <div className="block__6__greed1" style={{margin: '0 0 58px 0'}} onClick={showPopup_5}>
             <News lang={lang} scheme={scheme} content={exampleNew[0]} type={1} contentPadding={'37px 22px 124px 22px'}/>
             <News lang={lang} scheme={scheme} content={exampleNew[1]} type={1} contentPadding={'37px 22px 124px 22px'}/>
             <News lang={lang} scheme={scheme} content={exampleNew[2]} type={1} contentPadding={'37px 22px 124px 22px'}/>
@@ -482,7 +484,7 @@ useEffect(()=>{
       {category[7]===true && <>
         <div className="block__7" id="nav7">
           <div className="block__7__title">{nav[lang][7]}</div>
-          <div className="block__3__greed1">
+          <div className="block__3__greed1" onClick={showPopup_5}>
             <News lang={lang} scheme={scheme} content={exampleNew[1]} type={2} />
             <News lang={lang} scheme={scheme} content={exampleNew[2]} type={2} />
             <News lang={lang} scheme={scheme} content={exampleNew[3]} type={2} />
@@ -599,12 +601,15 @@ useEffect(()=>{
       </div>
 
 
-      <Popup lang={lang} scheme={scheme} type={1} createYourOwnTape={false} setScheme={setScheme} setLang={setLang} />
+      <Popup lang={lang} scheme={scheme} type={1} createYourOwnTape={false} setScheme={setScheme} setLang={setLang} /> {/* createYourOwnTape сюда пробрасывать состояние созданной или нет (true/false) своей новостной ленты(предпочтений) */}
       <Popup lang={lang} scheme={scheme} type={2}  setScheme={setScheme} setLang={setLang} />
       <Popup lang={lang} scheme={scheme} type={3}  setScheme={setScheme} setLang={setLang} />
       <Popup lang={lang} scheme={scheme} type={4}  setScheme={setScheme} setLang={setLang} />
-      <Popup lang={lang} scheme={scheme} type={5}  setScheme={setScheme} setLang={setLang} openNews={exampleNew} title={titleForPopupNews}/>
+      <Popup lang={lang} scheme={scheme} type={5}  setScheme={setScheme} setLang={setLang} openNews={exampleNew} title={titleForPopupNews}/> {/* Не знаю где и когда будет вызыватся поэтому повесил на все каталоги, вызывается showPopup_5, exampleNew - это массив всех новостей для отображение в попапе, titleForPopupNews - выбранные ресур, из которых взяты новости */}
 
+      <div onClick={(e)=>{
+          setCategory(category)
+      }}></div>
 
     </div>
   );
