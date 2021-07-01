@@ -476,7 +476,7 @@ input[type=checkbox]{
         width: 20px;
         height: 20px;
         border-radius:4px;
-        top:-20px;
+        top:-21px;
         cursor: pointer;
         transition: box-shadow 200ms, border 200ms, background 200ms;
     }
@@ -684,5 +684,5 @@ input[type=checkbox]{
 }
 .popup__title_click {
   cursor: pointer;
-  
+
 }
