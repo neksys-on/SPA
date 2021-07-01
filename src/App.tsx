@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import News from './components/news'
+import Popup from './components/popup'
 
+// Для инлайн стилей, зависимость от состояния scheme, определяет какой стиль будет применятся
 const styles = {
   whiteScheme :{
     backgroundColor: 'white',
@@ -13,7 +15,7 @@ const styles = {
   }
 }
 
-
+// Данные затычки >>>>>>>
 const nav:{[index: string]: any} = {
   укр: {
     1: 'Головне',
@@ -46,6 +48,11 @@ const firstBlockTitle:{[index: string]: any} = {
   },
 }
 
+const titleForPopupNews:{[index: string]: any} = {
+  укр: 'Титульник массива обьектов openNews',
+  ukr: 'UKR Титульник массива обьектов openNews',
+}
+
 const exampleNew = [
   {
     title: {
@@ -53,7 +60,7 @@ const exampleNew = [
       ukr:'UKR Зять Медведчука очолив велику компанію в Росії - Інтерфакс'
     },
     text:{
-      укр:'Андрій Рюмін - зять глави політради партії Опозиційна платформа - За життя Віктора Медведчука зять глави політради партії Опозиційна платформа - За життя Віктора Медведчука...',
+      укр:'Андрій Рюмін - зять глави політради партії Опозиційна платформа - За життя Віктора Медведчука зять глави політради партії Опозиційна платформа - За життя Віктора Медведчука Андрій Рюмін - зять глави політради партії Опозиційна платформа - За життя Віктора Медведчука зять глави політради партії Опозиційна платформа - За життя Віктора Медведчу',
       ukr:'UKR Андрій Рюмін - зять глави політради партії Опозиційна платформа - За життя Віктора Медведчука зять глави політради партії Опозиційна платформа - За життя Віктора Медведчука...'
      },
     image: 'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg',
@@ -122,13 +129,107 @@ const exampleNew = [
       ukr:'UKR канал 1'
     }
   },
+  {
+    title: {
+      укр:'5 Новостной заголовок',
+      ukr:'5 UKR Новостной заголовок'
+    },
+    text:{
+      укр:'Коротко о 5 новости',
+      ukr:'UKR Коротко о 5 новости',
+     },
+    image: 'https://lifestyle.24tv.ua/resources/photos/news/1200x675_DIR/202104/1611954.jpg?202104150644',
+    newsSource: {
+      укр:'канал 1',
+      ukr:'UKR канал 1'
+    }
+  },
+  {
+    title: {
+      укр:'5 Новостной заголовок',
+      ukr:'5 UKR Новостной заголовок'
+    },
+    text:{
+      укр:'Коротко о 5 новости',
+      ukr:'UKR Коротко о 5 новости',
+     },
+    image: 'https://lifestyle.24tv.ua/resources/photos/news/1200x675_DIR/202104/1611954.jpg?202104150644',
+    newsSource: {
+      укр:'канал 1',
+      ukr:'UKR канал 1'
+    }
+  },
+  {
+    title: {
+      укр:'5 Новостной заголовок',
+      ukr:'5 UKR Новостной заголовок'
+    },
+    text:{
+      укр:'Коротко о 5 новости',
+      ukr:'UKR Коротко о 5 новости',
+     },
+    image: 'https://lifestyle.24tv.ua/resources/photos/news/1200x675_DIR/202104/1611954.jpg?202104150644',
+    newsSource: {
+      укр:'канал 1',
+      ukr:'UKR канал 1'
+    }
+  },
+  {
+    title: {
+      укр:'5 Новостной заголовок',
+      ukr:'5 UKR Новостной заголовок'
+    },
+    text:{
+      укр:'Коротко о 5 новости',
+      ukr:'UKR Коротко о 5 новости',
+     },
+    image: 'https://lifestyle.24tv.ua/resources/photos/news/1200x675_DIR/202104/1611954.jpg?202104150644',
+    newsSource: {
+      укр:'канал 1',
+      ukr:'UKR канал 1'
+    }
+  },
+  {
+    title: {
+      укр:'5 Новостной заголовок',
+      ukr:'5 UKR Новостной заголовок'
+    },
+    text:{
+      укр:'Коротко о 5 новости',
+      ukr:'UKR Коротко о 5 новости',
+     },
+    image: 'https://lifestyle.24tv.ua/resources/photos/news/1200x675_DIR/202104/1611954.jpg?202104150644',
+    newsSource: {
+      укр:'канал 1',
+      ukr:'UKR канал 1'
+    }
+  },
 ]
+// <<<<<<<<< Данные затычки
+
+
+
+// Подчеркивание в хедаре активированного раздела (ивент на событие скрола, для проверки просматриваемого раздела не делал)
+function navLine(id:string,category:{[index: number]: boolean;}):void {
+  const line:any = document.querySelector(`#line${id}`);
+  line.style.opacity = '1'
+  let i:number = 1
+  const idNumber:number = Number(id)
+  while (category[i] !== undefined) {
+    if (category[i] && i !== idNumber) {
+      const line:any = document.querySelector(`#line${i}`);
+      line.style.opacity = '0'
+    }
+    i++
+  }
+}
 
 
 
 const App: React.FC = () => {
-  const [scheme, setScheme] = useState<string>('blackScheme');
-  const [lang, setLang] = useState<string>('укр');
+
+  const [scheme, setScheme] = useState<string>('blackScheme'); // состояние цветовой схемы, сохрание состояний (например в локалсторедж) не делал
+  const [lang, setLang] = useState<string>('укр'); // состояние языкавого выбора
   const [category, setCategory] = useState<{[index: number]: boolean;}>({
     1: true,
     2: true,
@@ -137,10 +238,17 @@ const App: React.FC = () => {
     5: true,
     6: true,
     7: true
-  });
+  }); // Состояние категорий(тем) новорстных разделов, их вабранность пользователем, зависимости на выбор пользователя и сохранение состояния не делал
+  const [load, setLoad] = useState<boolean>(false); // заглушка для инициализации страницы
 
 
 useEffect(()=>{
+  if (!load) {
+    const line:any = document.querySelector(`#line1`);
+    line.style.opacity = '1'
+    setLoad(true)
+    setCategory(category) // удалить
+  }
 
 },[]);
 
@@ -149,14 +257,22 @@ useEffect(()=>{
   return (
     <div className="App" style={scheme==='whiteScheme' ? styles.whiteScheme : styles.blackScheme}>
       <div className="header" style={scheme==='whiteScheme' ? {boxShadow: '0px 1px 25px rgba(0, 0, 0, 0.04)', background: 'rgba(255, 255, 255, 0.7)'} : {boxShadow: '0px 1px 25px rgba(0, 0, 0, 0.08)', background: 'rgba(18, 18, 18, 0.7)'}}>
-        <div className="header__burger">
+        <div className="header__burger" onClick={()=>{
+              const popup:any = document.querySelector('.popup__fon1')
+              const container:any = document.querySelector('.popup_wrapper')
+              popup.style.opacity = '1'
+              popup.style.visibility = 'visible'
+              container.style.opacity = '1'
+              container.style.transform = 'perspective(600px) translate(0px, 0%) rotateX(0deg)'
+            }}>
           <div className="header__burger_plast" style={scheme==='whiteScheme' ? styles.blackScheme : styles.whiteScheme}></div>
           <div className="header__burger_plast" style={scheme==='whiteScheme' ? styles.blackScheme : styles.whiteScheme}></div>
           <div className="header__burger_plast" style={scheme==='whiteScheme' ? styles.blackScheme : styles.whiteScheme}></div>
         </div>
         <div className="header__title">moonam</div>
         <div className="header__nav">
-          {category[1]===true && <div><div className="header__nav__item" onClick={(e)=>{
+          {category[1]===true && <div className="header__nav__item__container"><div className="header__nav__item" onClick={(e)=>{
+            navLine('1',category)
             const element = document.querySelector(`#nav1`);
             if (element) {
               const c = element.getBoundingClientRect();
@@ -166,8 +282,9 @@ useEffect(()=>{
                   behavior: 'smooth'
               })
             }
-          }}>{nav[lang][1]}</div></div>}
-          {category[2]===true && <div><div className="header__nav__item" onClick={(e)=>{
+          }}>{nav[lang][1]}</div><div id='line1' className="header__nav__item__line" style={scheme==='whiteScheme' ? styles.blackScheme : styles.whiteScheme}></div></div>}
+          {category[2]===true && <div className="header__nav__item__container"><div className="header__nav__item" onClick={(e)=>{
+            navLine('2',category)
             const element = document.querySelector(`#nav2`);
             if (element) {
               const c = element.getBoundingClientRect();
@@ -177,8 +294,9 @@ useEffect(()=>{
                   behavior: 'smooth'
               })
             }
-          }}>{nav[lang][2]}</div></div>}
-          {category[3]===true && <div><div className="header__nav__item" onClick={(e)=>{
+          }}>{nav[lang][2]}</div><div id='line2' className="header__nav__item__line" style={scheme==='whiteScheme' ? styles.blackScheme : styles.whiteScheme}></div></div>}
+          {category[3]===true && <div className="header__nav__item__container"><div className="header__nav__item" onClick={(e)=>{
+            navLine('3',category)
             const element = document.querySelector(`#nav3`);
             if (element) {
               const c = element.getBoundingClientRect();
@@ -188,8 +306,9 @@ useEffect(()=>{
                   behavior: 'smooth'
               })
             }
-          }}>{nav[lang][3]}</div></div>}
-          {category[4]===true && <div><div className="header__nav__item" onClick={(e)=>{
+          }}>{nav[lang][3]}</div><div id='line3' className="header__nav__item__line" style={scheme==='whiteScheme' ? styles.blackScheme : styles.whiteScheme}></div></div>}
+          {category[4]===true && <div className="header__nav__item__container"><div className="header__nav__item" onClick={(e)=>{
+            navLine('4',category)
             const element = document.querySelector(`#nav4`);
             if (element) {
               const c = element.getBoundingClientRect();
@@ -199,8 +318,9 @@ useEffect(()=>{
                   behavior: 'smooth'
               })
             }
-          }}>{nav[lang][4]}</div></div>}
-          {category[5]===true && <div><div className="header__nav__item" onClick={(e)=>{
+          }}>{nav[lang][4]}</div><div id='line4' className="header__nav__item__line" style={scheme==='whiteScheme' ? styles.blackScheme : styles.whiteScheme}></div></div>}
+          {category[5]===true && <div className="header__nav__item__container"><div className="header__nav__item" onClick={(e)=>{
+            navLine('5',category)
             const element = document.querySelector(`#nav5`);
             if (element) {
               const c = element.getBoundingClientRect();
@@ -210,8 +330,9 @@ useEffect(()=>{
                   behavior: 'smooth'
               })
             }
-          }}>{nav[lang][5]}</div></div>}
-          {category[6]===true && <div><div className="header__nav__item" onClick={(e)=>{
+          }}>{nav[lang][5]}</div><div id='line5' className="header__nav__item__line" style={scheme==='whiteScheme' ? styles.blackScheme : styles.whiteScheme}></div></div>}
+          {category[6]===true && <div className="header__nav__item__container"><div className="header__nav__item" onClick={(e)=>{
+            navLine('6',category)
             const element = document.querySelector(`#nav6`);
             if (element) {
               const c = element.getBoundingClientRect();
@@ -221,8 +342,9 @@ useEffect(()=>{
                   behavior: 'smooth'
               })
             }
-          }}>{nav[lang][6]}</div></div>}
-          {category[7]===true && <div><div className="header__nav__item" onClick={(e)=>{
+          }}>{nav[lang][6]}</div><div id='line6' className="header__nav__item__line" style={scheme==='whiteScheme' ? styles.blackScheme : styles.whiteScheme}></div></div>}
+          {category[7]===true && <div className="header__nav__item__container"><div className="header__nav__item" onClick={(e)=>{
+            navLine('7',category)
             const element = document.querySelector(`#nav7`);
             if (element) {
               const c = element.getBoundingClientRect();
@@ -232,7 +354,7 @@ useEffect(()=>{
                   behavior: 'smooth'
               })
             }
-          }}>{nav[lang][7]}</div></div>}
+          }}>{nav[lang][7]}</div><div id='line7' className="header__nav__item__line" style={scheme==='whiteScheme' ? styles.blackScheme : styles.whiteScheme}></div></div>}
         </div>
       </div>
       <div className="head_cushion"></div>
@@ -240,7 +362,14 @@ useEffect(()=>{
       {category[1]===true && <>
         <div className="block__1" id="nav1">
           <div className="block__1__title">{firstBlockTitle[lang].title}</div>
-          <div className="block__1__button">{firstBlockTitle[lang].button}</div>
+          <div className="block__1__button" onClick={()=>{
+                const popup:any = document.querySelector('.popup__fon2')
+                const container:any = document.querySelector('.popup_wrapper2')
+                popup.style.opacity = '1'
+                popup.style.visibility = 'visible'
+                container.style.opacity = '1'
+                container.style.transform = 'perspective(600px) translate(0px, 0%) rotateX(0deg)'
+              }}>{firstBlockTitle[lang].button}</div>
           <div className="block__1__containerForHr"><hr className="block__1__hr"/></div>
         </div>
       </>}
@@ -365,7 +494,14 @@ useEffect(()=>{
       {category[1]===true && <>
         <div className="block__1">
           <div className="block__1__title">{firstBlockTitle[lang].title}</div>
-          <div className="block__1__button">{firstBlockTitle[lang].button}</div>
+          <div className="block__1__button" onClick={()=>{
+                const popup:any = document.querySelector('.popup__fon2')
+                const container:any = document.querySelector('.popup_wrapper2')
+                popup.style.opacity = '1'
+                popup.style.visibility = 'visible'
+                container.style.opacity = '1'
+                container.style.transform = 'perspective(600px) translate(0px, 0%) rotateX(0deg)'
+              }}>{firstBlockTitle[lang].button}</div>
           <div className="block__1__containerForHr"><hr className="block__1__hr"/></div>
         </div>
       </>}
@@ -463,21 +599,11 @@ useEffect(()=>{
       </div>
 
 
-
-
-      <div onClick={(e)=>{
-        setCategory(category)
-      }}></div>
-      <div onClick={(e)=>{
-        let newLang
-        lang === 'укр' ? newLang = 'ukr' : newLang = 'укр'
-        setLang(newLang)
-      }} style={{width:'200px', cursor:'pointer'}}>Switch lang</div>
-      <div onClick={(e)=>{
-        let newDesign
-        scheme === 'whiteScheme' ? newDesign = 'blackScheme' : newDesign = 'whiteScheme'
-        setScheme(newDesign)
-      }} style={{width:'200px', cursor:'pointer', margin:'0 0 100px 0'}}>Switch design</div>
+      <Popup lang={lang} scheme={scheme} type={1} createYourOwnTape={false} setScheme={setScheme} setLang={setLang} />
+      <Popup lang={lang} scheme={scheme} type={2}  setScheme={setScheme} setLang={setLang} />
+      <Popup lang={lang} scheme={scheme} type={3}  setScheme={setScheme} setLang={setLang} />
+      <Popup lang={lang} scheme={scheme} type={4}  setScheme={setScheme} setLang={setLang} />
+      <Popup lang={lang} scheme={scheme} type={5}  setScheme={setScheme} setLang={setLang} openNews={exampleNew} title={titleForPopupNews}/>
 
 
     </div>

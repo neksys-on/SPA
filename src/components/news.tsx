@@ -96,11 +96,7 @@ const News:React.FC<IProps> = ({ lang , scheme, content , type, textFontSize, ti
   }
 
   return (
-    <div>{lang} {content.title[lang]}
-      <div>{content.title[lang]}</div>
-      <div>{content.text[lang]}</div>
-      <div>{content.newsSource[lang]}</div>
-    </div>
+    <div></div>
   );
 };
 export default News;
