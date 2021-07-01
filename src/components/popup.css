@@ -17,7 +17,6 @@
   overflow-y: auto;
   overflow-x: hidden;
   transition: all .6s ease 0s;
-  /* backdrop-filter: blur(15px); */
 }
 .popup__fon2 {
   position: fixed;
@@ -34,6 +33,7 @@
   visibility: hidden;
   transition: all .6s ease 0s;
   backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   display: flex;
 
   justify-content: center;
@@ -53,6 +53,7 @@
   visibility: hidden;
   transition: all .6s ease 0s;
   backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   display: flex;
   justify-content: center;
 }
@@ -71,6 +72,7 @@
   visibility: hidden;
   transition: all .6s ease 0s;
   backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   display: flex;
   justify-content: center;
 }
@@ -89,6 +91,7 @@
   visibility: hidden;
   transition: all .6s ease 0s;
   backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   display: flex;
   justify-content: center;
 }
@@ -678,4 +681,8 @@ input[type=checkbox]{
   line-height: 31px;
   letter-spacing: 0em;
   margin: 0 0 45px 60px;
+}
+.popup__title_click {
+  cursor: pointer;
+  
 }

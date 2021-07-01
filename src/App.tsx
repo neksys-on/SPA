@@ -372,7 +372,7 @@ useEffect(()=>{
                 container.style.opacity = '1'
                 container.style.transform = 'perspective(600px) translate(0px, 0%) rotateX(0deg)'
               }}>{firstBlockTitle[lang].button}</div>
-          <div className="block__1__containerForHr"><hr className="block__1__hr"/></div>
+          <div className="block__1__containerForHr"><div className="block__1__hr"></div></div>
         </div>
       </>}
 
@@ -504,7 +504,7 @@ useEffect(()=>{
                 container.style.opacity = '1'
                 container.style.transform = 'perspective(600px) translate(0px, 0%) rotateX(0deg)'
               }}>{firstBlockTitle[lang].button}</div>
-          <div className="block__1__containerForHr"><hr className="block__1__hr"/></div>
+          <div className="block__1__containerForHr"><div className="block__1__hr"></div></div>
         </div>
       </>}
 
@@ -588,7 +588,7 @@ useEffect(()=>{
             }
           }}>{nav[lang][7]}</div></div>}
         </div>
-        <div className="block__1__containerForHr"><hr className="block__1__hr"/></div>
+        <div className="block__1__containerForHr"><div className="block__1__hr"></div></div>
       </div>
 
       <div className="footer">

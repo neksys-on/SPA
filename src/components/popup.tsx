@@ -14,7 +14,7 @@ const Checkbox:React.FC<IProps2> = ({ value, onChange, scheme , id , type}) => {
       <label className='popup_label_checkbox'>
         <input type="checkbox" checked={value} onChange={onChange} className='popup_checkbox' id={`checkbox-element-1${id}type${type}`}/>
         <label htmlFor={`checkbox-element-1${id}type${type}`}>
-            <span className="indicator" style={scheme==='whiteScheme' ? {border:'1px solid rgba(18, 18, 18, 1)', background: '1px solid rgba rgba(255, 255, 255, 1)'} : {border:'rgba(181, 181, 181, 1)', background: 'rgba(18, 18, 18, 1)'}}></span>
+            <span className="indicator" style={scheme==='whiteScheme' ? {border:'1px solid rgba(18, 18, 18, 1)', background: 'rgba(255, 255, 255, 1)'} : {border:'rgba(181, 181, 181, 1)', background: 'rgba(18, 18, 18, 1)'}}></span>
             <span className="indicator2" style={scheme==='whiteScheme' ? {border:'1px solid rgba(18, 18, 18, 1)'} : {border:'1px solid rgba(181, 181, 181, 1)'}}></span>
         </label>
       </label>
@@ -129,6 +129,20 @@ const Popup:React.FC<IProps> = ({ lang, scheme, type, createYourOwnTape=false , 
       container.style.transform = 'perspective(600px) translate(0px, -100%) rotateX(45deg)'
     }
   }
+  function stvoryStranichku(e:any) {
+    const popup:any = document.querySelector('.popup__fon1')
+    const container:any = document.querySelector('.popup_wrapper')
+    popup.style.opacity = '0'
+    popup.style.visibility = 'hidden'
+    container.style.opacity = '0'
+    container.style.transform = 'perspective(600px) translate(0px, -100%) rotateX(45deg)'
+    const popup2:any = document.querySelector('.popup__fon2')
+    const container2:any = document.querySelector('.popup_wrapper2')
+    popup2.style.opacity = '1'
+    popup2.style.visibility = 'visible'
+    container2.style.opacity = '1'
+    container2.style.transform = 'perspective(600px) translate(0px, 0%) rotateX(0deg)'
+  }
   function hidden2(e:any) {
     const popup:any = document.querySelector('.popup__fon2')
     const container:any = document.querySelector('.popup_wrapper2')
@@ -218,17 +232,21 @@ const Popup:React.FC<IProps> = ({ lang, scheme, type, createYourOwnTape=false , 
         <div className='popup_wrapper'>
           <div id='id_popup_container' className='popup_container1' style={scheme==='whiteScheme' ? {backgroundColor:'rgba(255, 255, 255, 1)'} : {backgroundColor:'rgba(18, 18, 18, 1)'}}>
             {createYourOwnTape===false && <>
-              <div className='popup__title'>Створити Власну Стрічку</div>
-              <div className='popup__title__item'>
-                <div className='popup__title__item1' style={scheme==='whiteScheme' ? {border: '1px solid rgba(18, 18, 18, 1)'} : {border: '1px solid rgba(255, 255, 255, 1)'}}></div>
-                <div className='popup__title__item2' style={scheme==='whiteScheme' ? {backgroundColor:'rgba(255, 255, 255, 1)'} : {backgroundColor:'rgba(18, 18, 18, 1)'}}>🖍</div>
+              <div className='popup__title_click' onClick={(e)=>{stvoryStranichku(e)}}>
+                <div className='popup__title'>Створити Власну Стрічку</div>
+                <div className='popup__title__item'>
+                  <div className='popup__title__item1' style={scheme==='whiteScheme' ? {border: '1px solid rgba(18, 18, 18, 1)'} : {border: '1px solid rgba(255, 255, 255, 1)'}}></div>
+                  <div className='popup__title__item2' style={scheme==='whiteScheme' ? {backgroundColor:'rgba(255, 255, 255, 1)'} : {backgroundColor:'rgba(18, 18, 18, 1)'}}>🖍</div>
+                </div>
               </div>
             </>}
             {createYourOwnTape===true && <>
-              <div className='popup__title_true'>Стрічка створена</div>
-              <div className='popup__title__item'>
-                <img src={scheme==='whiteScheme' ? './popup_items/ok_black1.webp' : './popup_items/ok_white1.webp'} alt="ok" className='popup__title_item3'/>
-                <div className='popup__title__item4' style={scheme==='whiteScheme' ? {backgroundColor:'rgba(255, 255, 255, 1)'} : {backgroundColor:'rgba(18, 18, 18, 1)'}}>ред.</div>
+              <div className='popup__title_click' onClick={(e)=>{stvoryStranichku(e)}}>
+                <div className='popup__title_true'>Стрічка створена</div>
+                <div className='popup__title__item'>
+                  <img src={scheme==='whiteScheme' ? './popup_items/ok_black1.webp' : './popup_items/ok_white1.webp'} alt="ok" className='popup__title_item3'/>
+                  <div className='popup__title__item4' style={scheme==='whiteScheme' ? {backgroundColor:'rgba(255, 255, 255, 1)'} : {backgroundColor:'rgba(18, 18, 18, 1)'}}>ред.</div>
+                </div>
               </div>
             </>}
             <div className='popup__switch_color'>
@@ -362,7 +380,7 @@ const Popup:React.FC<IProps> = ({ lang, scheme, type, createYourOwnTape=false , 
             <div className='wrapper_next_button'>
               <div className='next_button' onClick={(e)=>{
                   nextChoice(e)
-              }}>Далі</div>
+              }} style={scheme==='whiteScheme' ? {color:'rgba(255, 255, 255, 1)'} : {color:'rgba(255, 255, 255, 1)'}}>Далі</div>
             </div>
 
           </div>
