@@ -380,7 +380,7 @@ const Popup:React.FC<IProps> = ({ lang, scheme, type, createYourOwnTape=false , 
             <div className='wrapper_next_button'>
               <div className='next_button' onClick={(e)=>{
                   nextChoice(e)
-              }} style={scheme==='whiteScheme' ? {color:'rgba(255, 255, 255, 1)'} : {color:'rgba(255, 255, 255, 1)'}}>Далі</div>
+              }} style={{color:'rgba(255, 255, 255, 1)'}}>Далі</div>
             </div>
 
           </div>
@@ -519,7 +519,7 @@ const Popup:React.FC<IProps> = ({ lang, scheme, type, createYourOwnTape=false , 
               }}>Назад</div>
               <div className='next_button' onClick={(e)=>{
                   final(e)
-              }}>Завершити</div>
+              }} style={{color:'rgba(255, 255, 255, 1)'}}>Завершити</div>
             </div>
 
           </div>
