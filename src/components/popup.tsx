@@ -121,7 +121,7 @@ const Popup:React.FC<IProps> = ({ lang, scheme, type, createYourOwnTape=false , 
 
   function hidden(e:any) {
     const popup:any = document.querySelector('.popup__fon1')
-    const container:any = document.querySelector('.popup_wrapper')
+    const container:any = document.querySelector('.popup_wrapper1')
     if (!e.target.closest('#id_popup_container')) {
       popup.style.opacity = '0'
       popup.style.visibility = 'hidden'
@@ -131,7 +131,7 @@ const Popup:React.FC<IProps> = ({ lang, scheme, type, createYourOwnTape=false , 
   }
   function stvoryStranichku(e:any) {
     const popup:any = document.querySelector('.popup__fon1')
-    const container:any = document.querySelector('.popup_wrapper')
+    const container:any = document.querySelector('.popup_wrapper1')
     popup.style.opacity = '0'
     popup.style.visibility = 'hidden'
     container.style.opacity = '0'
@@ -229,7 +229,7 @@ const Popup:React.FC<IProps> = ({ lang, scheme, type, createYourOwnTape=false , 
       <div className='popup__fon1' onClick={(e)=>{
           hidden(e)
       }}>
-        <div className='popup_wrapper'>
+        <div className='popup_wrapper1'>
           <div id='id_popup_container' className='popup_container1' style={scheme==='whiteScheme' ? {backgroundColor:'rgba(255, 255, 255, 1)'} : {backgroundColor:'rgba(18, 18, 18, 1)'}}>
             {createYourOwnTape===false && <>
               <div className='popup__title_click' onClick={(e)=>{stvoryStranichku(e)}}>
